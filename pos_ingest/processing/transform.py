@@ -42,6 +42,10 @@ if __name__ == "__main__":
     raw = load_raw()
     cleaned = clean_and_standardize(raw)
     daily = aggregate_time(cleaned, freq="D")
+
+    # write to DB
     write_processed(daily)
+
+    # write Parquet file
     daily.to_parquet("data/processed_pos.parquet", index=False)
 
