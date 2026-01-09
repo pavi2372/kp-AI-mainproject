@@ -1,1 +1,32 @@
+import pandas as pd
+
+# 1. Load the Excel from UCI
+df = pd.read_excel("online_retail_II.xlsx")  # choose the proper sheet if needed
+
+# 2. Map columns to your POS schema
+pos_df = df.rename(columns={
+    "Invoice": "transaction_id",   # or "InvoiceNo" depending on version
+    "StockCode": "sku",
+    "InvoiceDate": "timestamp",
+    "Quantity": "qty",
+    "Price": "price"               # or "UnitPrice" in some versions
+})
+
+# 3. Add missing fields for your pipeline
+pos_df["store_id"] = "STORE_001"     # synthetic store
+pos_df["discount"] = 0.0             # if dataset has no discount column
+
+# 4. Keep only needed columns in the right order
+pos_df = pos_df[[
+    "transaction_id",
+    "store_id",
+    "sku",
+    "qty",
+    "price",
+    "discount",
+    "timestamp"
+]]
+
+# 5. Save to your project folder
+pos_df.to_csv("data/raw_transactions.csv", index=False)
 
