@@ -1,0 +1,25 @@
+pandas
+numpy
+SQLAlchemy
+psycopg2-binary          # if using PostgreSQL, or 'pyodbc' for SQL Server, or 'sqlite' built-in
+python-dotenv
+pyyaml
+
+scikit-learn
+statsmodels
+
+plotly
+dash
+streamlit
+
+requests
+fastapi
+uvicorn
+
+transformers
+accelerate
+torch                   # CPU or CUDA build as per your GPU
+sentencepiece
+
+# Optional: vector DB or local embeddings for richer LLM behavior
+faiss-cpu
